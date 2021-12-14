@@ -1,0 +1,36 @@
+<div class="auth-wrapper">
+    <form class="form-addEmployee" [formGroup]="addPaymentForm" (ngSubmit)="addPayment()">
+        <div class="form-group mt-3">
+            <label >Card Owner Name :</label>
+            <input type="text" class="form-control" formControlName="cardOwnerName" placeholder="Enter Card Owner Name " required>
+            <span style="color: red;" *ngIf="cardOwnerName && cardOwnerName.touched && cardOwnerName.invalid">
+                Card Owner Name is required.
+            </span>
+        </div>
+        <div class="form-group mt-3">
+            <label >Card Number :</label>
+            <input type="text" class="form-control" formControlName="cardNumber" placeholder="Enter Card Number " required>
+            <span style="color: red;" *ngIf="cardNumber && cardNumber.touched && cardNumber.invalid">
+                Card Number is required. 
+            </span>
+        </div>
+        <div class="form-group mt-3">
+            <label >Security Code :</label>
+            <input type="text" class="form-control" formControlName="securityCode" placeholder="Enter Security Code" required>
+            <span style="color: red;" *ngIf="securityCode && securityCode.touched && securityCode.invalid">
+                Last Name is required. 
+            </span>
+        </div>
+        <div class="form-group mt-3">
+            <label >Valid Through :</label>
+            <input type="email" class="form-control" formControlName="expirationDate" placeholder="Valid Through " required>
+            <span style="color: red;" *ngIf="expirationDate && expirationDate.touched && expirationDate.invalid">
+                Valid Through is required.
+            </span>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary mt-3" style="margin: 4mm;">Submit</button>
+        <button [routerLink]="['/paymentDetails']" class="btn btn-dark m-2">Go Back</button>
+    </form>
+    <div class="container d-flex justify-content-right m-auto">
+    </div>
+</div>

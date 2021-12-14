@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="data-tables datatable-dark m-3">
+                <table id="dataTable" class="table" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Card Owner</th>
+                            <th>Card Number</th>
+                            <th>Exp Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Payment of allPayments">
+                            <td>{{Payment.cardOwnerName}}</td>
+                            <td>{{Payment.cardNumber}}</td>
+                            <td>{{Payment.expirationDate |date :'MM/YY'}}</td>
+                            <td>
+                                <button [routerLink]="['/updatePayment/',Payment.id]" class="btn btn-primary m-2">
+                                    Update
+                                    Data
+                                </button>
+                                <i class="bi bi-trash">
+                                    <button (click)="confirmDelete(Payment.id!)" class="btn btn-danger m-2"> 
+                                        Delete Data
+                                    </button>
+                                </i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-success btn-lg" [routerLink]="['/addPayment']" style="margin: 4mm;">Add Data</button>
+            <a class="btn btn-danger btn-lg" href='/login'>Logout</a>
+        </div>
+    </div>
+</div>
