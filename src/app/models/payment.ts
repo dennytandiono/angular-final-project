@@ -1,5 +1,5 @@
 export interface Payment{
-    id : number,
+    id?: number,
     cardOwnerName: string,
     cardNumber :string,
     expirationDate: Date,

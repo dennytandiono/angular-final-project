@@ -23,8 +23,8 @@ export class AddPaymentComponent implements OnInit {
 
     addPaymentForm = new FormGroup({
       cardOwnerName: new FormControl('',[Validators.required]),
-      cardNumber: new FormControl('',[Validators.required]),
-      securityCode: new FormControl('',[Validators.required]),
+      cardNumber: new FormControl('',[Validators.required,Validators.minLength(7)]),
+      securityCode: new FormControl('',[Validators.required,Validators.minLength(6)]),
       expirationDate: new FormControl('',[Validators.required])
     })
 

@@ -13,8 +13,15 @@ import { PaymentServiceService } from 'src/app/shared/payment-service.service';
 })
 export class UpdatePaymentComponent implements OnInit {
 
-  pageid: number = -1;
-  selectedPayment: Payment = { id: -1, cardOwnerName: '', cardNumber: '', expirationDate: new Date(), securityCode: '' };
+  pageid: number = 0;
+  selectedPayment: Payment = 
+  { 
+    id: 0, 
+    cardOwnerName: '', 
+    cardNumber: '', 
+    expirationDate: new Date(), 
+    securityCode: '' 
+  };
 
   month: number = 0;
   year: number = 0;
@@ -28,20 +35,21 @@ export class UpdatePaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getSelectedPayment()
+    this.getSelectedPayment();
   }
 
   updatePaymentForm = new FormGroup({
-    id: new FormControl(this.activateRoute.snapshot.params.id),
+    id: new FormControl(),
     cardOwnerName: new FormControl('', [Validators.required]),
-    cardNumber: new FormControl('', [Validators.required]),
-    securityCode: new FormControl('', [Validators.required]),
+    cardNumber: new FormControl('', [Validators.required,Validators.minLength(7)]),
+    securityCode: new FormControl('', [Validators.required, Validators.minLength(6)]),
     expirationDate: new FormControl('', [Validators.required]),
   })
 
-  get id() {
-    return this.updatePaymentForm.get('id')
+  get id(){
+    return this.updatePaymentForm.get('id');
   }
+
   get cardOwnerName() {
     return this.updatePaymentForm.get('cardOwnerName')
   }
@@ -56,26 +64,28 @@ export class UpdatePaymentComponent implements OnInit {
   }
 
   updatePayment() {
-    if (this.updatePaymentForm.valid) {
-      this.validateDate();
-      this.paymentService.updatePayment(this.updatePaymentForm.value, this.pageid).subscribe((res) => {
-        if (res.result) {
-        }
-        this.updatePaymentForm.reset()
-        this.router.navigate(['/paymentDetails'])
-      })
-    }
+    this.validateDate();
+    this.paymentService.updatePayment(this.updatePaymentForm.value, this.pageid).subscribe((res) => {
+      if (res.result) {
+      }
+      this.updatePaymentForm.reset()
+      this.router.navigate(['/paymentDetails'])
+    })
   }
 
-  getSelectedPayment() {
-    this.paymentService.getPaymentById(this.pageid).subscribe((res) => {
-      this.selectedPayment = res.payment;
+  getSelectedPayment(id:number=this.pageid){
+    this.paymentService
+    .getPaymentById(id)
+    .subscribe(data => {
+      console.log(data)
+      this.selectedPayment=data
       let convertDate = this.datePipe.transform(this.selectedPayment.expirationDate, 'MM/yy');
-
-      this.updatePaymentForm.get('cardOwnerName')?.setValue(this.selectedPayment.cardOwnerName);
-      this.updatePaymentForm.get('cardNumber')?.setValue(this.selectedPayment.cardNumber);
-      this.updatePaymentForm.get('securityCode')?.setValue(this.selectedPayment.securityCode);
-      this.updatePaymentForm.get('expirationDate')?.setValue(convertDate);
+      
+      this.id?.setValue(data.id)
+      this.cardOwnerName?.setValue(data.cardOwnerName)
+      this.cardNumber?.setValue(data.cardNumber)
+      this.expirationDate?.setValue(convertDate)
+      this.securityCode?.setValue(data.securityCode)
     })
   }
 

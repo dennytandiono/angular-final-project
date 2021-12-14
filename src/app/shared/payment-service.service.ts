@@ -38,7 +38,7 @@ export class PaymentServiceService {
     console.log(payment)
     return (
       this.http
-      .put(`${this.endpoint}api/payment/${id}`, payment)
+      .put(`${this.endpoint}/api/payment/${id}`, payment)
       .pipe( catchError(this.handleError) )
     )
   }
@@ -51,7 +51,7 @@ export class PaymentServiceService {
                 .pipe( catchError(this.handleError))
   }
 
-  deletePayment(id: string): Observable<any> {
+  deletePayment(id: number): Observable<any> {
     return (
       this.http
       .delete(`${this.endpoint}/api/payment/${id}`)
