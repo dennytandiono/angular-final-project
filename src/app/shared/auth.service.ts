@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { catchError } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class AuthService {
   }
 
   login(user: User){
-    return this.http.post<any>(`${this.endpoint}/api/AuthManagement/Login`, user)
+    return this.http.post<any>(`${this.endpoint}/api/AuthManagement/Login`, user).pipe(catchError(this.handleError))
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token);
         this.router.navigate(['/paymentDetails']);
