@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
-import { httpInterceptorProviders } from './components/http-interceptor';
+import { httpInterceptorProviders } from './http-interceptor';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddPaymentComponent } from './components/add-payment/add-payment.component';
 import { UpdatePaymentComponent } from './components/update-payment/update-payment.component';
