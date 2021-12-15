@@ -1,39 +1,48 @@
-<div class="auth-wrapper">
-    <form class="form-updateEmployee" [formGroup]="updatePaymentForm" (ngSubmit)="updatePayment()">
-        <h3 class="h3 mb-3 font-weight-normal text-center">Edit Payment Data</h3>
-        <div class="form-group mt-3">
-            <label >Card Owner Name :</label>
-            <input type="text" class="form-control" formControlName="cardOwnerName" placeholder="Enter Card Owner Name " required>
-            <span style="color: red;" *ngIf="cardOwnerName && cardOwnerName.touched && cardOwnerName.invalid">
-                Card Owner Name is required.
-            </span>
+<div class="background">
+    <div class="auth" style="padding-left: 120mm;">
+        <div class="card" style="width: 25rem; padding: 0 24px 24px 24px;">
+            <h3 class="h3 mb-3 font-weight-normal text-center">Edit Payment Data</h3>
+            <form class="form-updateEmployee" [formGroup]="updatePaymentForm" (ngSubmit)="updatePayment()">
+                <div class="form-group mt-3">
+                    <label>Card Owner Name :</label>
+                    <input type="text" class="form-control" formControlName="cardOwnerName"
+                        placeholder="Enter Card Owner Name " required>
+                    <span style="color: red;" *ngIf="cardOwnerName && cardOwnerName.touched && cardOwnerName.invalid">
+                        Card Owner Name is required.
+                    </span>
+                </div>
+                <div class="form-group mt-3">
+                    <label>Card Number :</label>
+                    <input type="text" class="form-control" formControlName="cardNumber"
+                        placeholder="Enter Card Number " required>
+                    <span style="color: red;" *ngIf="cardNumber && cardNumber.touched && cardNumber.invalid">
+                        Card Number is required. minimum length is 7 characters
+                    </span>
+                </div>
+                <div class="form-group mt-3">
+                    <label>Security Code :</label>
+                    <input type="text" class="form-control" formControlName="securityCode"
+                        placeholder="Enter Security Code" required>
+                    <span style="color: red;" *ngIf="securityCode && securityCode.touched && securityCode.invalid">
+                        Security Code is required. minimum length is 6 characters
+                    </span>
+                </div>
+                <div class="form-group mt-3">
+                    <label>Valid Through :</label>
+                    <input type="email" class="form-control" formControlName="expirationDate"
+                        placeholder="Valid Through " required>
+                    <span style="color: red;"
+                        *ngIf="expirationDate && expirationDate.touched && expirationDate.invalid">
+                        Valid Through is required.
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-block btn-primary mt-3">Submit</button>
+            </form>
+            <div class="container d-flex justify-content-right m-auto">
+                <a [routerLink]="['/paymentDetails']" class="btn btn-dark m-2">
+                    Go Back
+                </a>
+            </div>
         </div>
-        <div class="form-group mt-3">
-            <label >Card Number :</label>
-            <input type="text" class="form-control" formControlName="cardNumber" placeholder="Enter Card Number " required>
-            <span style="color: red;" *ngIf="cardNumber && cardNumber.touched && cardNumber.invalid">
-                Card Number is required. minimum length is 7 characters
-            </span>
-        </div>
-        <div class="form-group mt-3">
-            <label >Security Code :</label>
-            <input type="text" class="form-control" formControlName="securityCode" placeholder="Enter Security Code" required>
-            <span style="color: red;" *ngIf="securityCode && securityCode.touched && securityCode.invalid">
-                Security Code is required. minimum length is 6 characters
-            </span>
-        </div>
-        <div class="form-group mt-3">
-            <label >Valid Through :</label>
-            <input type="email" class="form-control" formControlName="expirationDate" placeholder="Valid Through " required>
-            <span style="color: red;" *ngIf="expirationDate && expirationDate.touched && expirationDate.invalid">
-                Valid Through is required.
-            </span>
-        </div>
-        <button type="submit" class="btn btn-block btn-primary mt-3">Submit</button>
-    </form>
-    <div class="container d-flex justify-content-right m-auto">
-        <a [routerLink]="['/paymentDetails']" class="btn btn-dark m-2">
-            Go Back
-        </a>
     </div>
 </div>
