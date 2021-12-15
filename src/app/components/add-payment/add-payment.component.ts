@@ -47,6 +47,7 @@ export class AddPaymentComponent implements OnInit {
   addPayment(){
     this.validateDate();
     this.paymentService.addPayment(this.addPaymentForm.value).subscribe((res)=>{
+      alert('Insert Data Berhasil');
       if(res.result){
       }
       this.addPaymentForm.reset()

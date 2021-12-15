@@ -66,6 +66,7 @@ export class UpdatePaymentComponent implements OnInit {
   updatePayment() {
     this.validateDate();
     this.paymentService.updatePayment(this.updatePaymentForm.value, this.pageid).subscribe((res) => {
+      alert('Update Data Berhasil');
       if (res.result) {
       }
       this.updatePaymentForm.reset()

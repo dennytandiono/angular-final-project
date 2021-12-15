@@ -12,7 +12,7 @@ export class PaymentDetailsComponent implements OnInit {
   allPayments : Payment [] = []
 
   constructor(
-    private route:Router,
+    private router:Router,
     public actRoute:ActivatedRoute,
     private paymentService : PaymentServiceService
   ) { }
@@ -41,4 +41,10 @@ export class PaymentDetailsComponent implements OnInit {
       location.reload()
     })
   }
+
+  logout(){
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
+  }
+
 }
